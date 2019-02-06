@@ -21,7 +21,7 @@
     border: 1px solid white;
 }
 
-.deckAndNewCardArea {
+.deckAndFaceUpArea {
     position: fixed;
     width: 10%;
     height: 150px;
@@ -30,7 +30,7 @@
     border: 1px solid white;
     background: orange;
 }
-.deck, .newCard {
+.deck, .faceUp {
     display: inline-block;
     width: 46%;
     height: 96%;

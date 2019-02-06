@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import {Grid, Row, Col} from 'react-bootstrap'
 import RenderHand from './components/RenderHand';
-import RenderDeckAndNewCard from './components/RenderDeckAndNewCard';
+import RenderDeckAndFaceUpCard from './components/RenderDeckAndFaceUpCard';
 import './App.css';
 
 const DEFAULT_PLAYER_COUNT = 2;
@@ -12,6 +12,12 @@ const DEFAULT_PLAYER_COUNT = 2;
 const FIRST_DEAL_CARD_COUNT = 3
 const SECOND_AND_THIRD_DEAL_CARD_COUNT = 2
 const FOURTH_DEAL_CARD_COUNT = 1
+
+// TODO: WHEN DEALING CARDS, SORT BY VALUE.
+// TODO: ALLOW PLAYER TO MOVE CARDS AROUND.
+// TODO: WHEN MAKING MELDS, PROVIDE 3 AREAS FOR MELDS TO BE MADE
+    // TODO: CARDS IN MELDS MUST BE SORTED BY VALUE IF NOT THE SAME
+    // TODO: MUST CHECK IF SUITS ARE SAME IF MAKING A RUN
 
 export default class App extends Component {
 
@@ -26,7 +32,7 @@ export default class App extends Component {
             cardsDiscarded: [],
             turn: true,
             gameHasBegun: false,
-            newCard: {}
+            faceUp: {}
         }
 
         this.generateCards = this.generateCards.bind(this);
@@ -117,15 +123,14 @@ export default class App extends Component {
         // 'Flips' first card when deck is clicked
         if(!this.state.gameHasBegun)
             this.setState({gameHasBegun: true})
-
+        // Gets random number, gets new Card, and removes card from deck.
         let deck = this.state.deck;
         const random = this.getRandomNumbers(deck.length, 1)[0];
-        const newCard = deck[random];
+        const faceUp = deck[random];
         deck.splice(random, 1);
-
         this.setState({
             deck: deck,
-            newCard: newCard
+            faceUp: faceUp
         })
     }
     handleNewCardClick(e) {
@@ -148,10 +153,10 @@ export default class App extends Component {
                     <RenderHand player='player4' cards={this.state.playerCards[3]}/>
                 ) : (<div></div>)}
 */}
-                <RenderDeckAndNewCard
+                <RenderDeckAndFaceUpCard
                     deckLength={this.state.deck.length}
                     gameHasBegun={this.state.gameHasBegun}
-                    newCard={this.state.newCard}
+                    faceUp={this.state.faceUp}
                     handleDeckClick={this.handleDeckClick}
                     handleNewCardClick={this.handleNewCardClick}
                 />

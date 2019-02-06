@@ -1,9 +1,9 @@
 import React from 'react';
 
-const RenderDeckAndCard = (props) => {
+const RenderDeckAndFaceUpCard = (props) => {
 
     return (
-        <div className='deckAndNewCardArea'>
+        <div className='deckAndFaceUpArea'>
             {props.deckLength !== 0 ?
                 (
                     <div className='deck' onClick={(e) => props.handleDeckClick(e)}>
@@ -13,9 +13,9 @@ const RenderDeckAndCard = (props) => {
             }
             {props.gameHasBegun ?
                 (
-                    <div className='newCard' onClick={(e) => props.handleNewCardClick(e)}>
-                        <p>{props.newCard.suit}</p>
-                        <p>{props.newCard.value}</p>
+                    <div className='faceUp' onClick={(e) => props.handleNewCardClick(e)}>
+                        <p>{props.faceUp.suit}</p>
+                        <p>{props.faceUp.value}</p>
                     </div>
                 ) : null
             }
@@ -24,4 +24,4 @@ const RenderDeckAndCard = (props) => {
 
 }
 
-export default RenderDeckAndCard;
+export default RenderDeckAndFaceUpCard;
