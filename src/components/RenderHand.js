@@ -1,18 +1,40 @@
 import React from 'react';
+import RenderCard from './RenderCard';
 
 const RenderHand = (props) => {
 
     const hands = props.cards.map((card, index) => {
 
+        const key = card.suit + card.value.toString();
+        const whichPlayerCards = props.player + 'Cards';
+        let typeOfCard = 'mainPlayerCard'
+
+        if (props.player !== 'mainPlayer') {
+            typeOfCard = 'otherPlayerCard';
+            if (index === 0) {
+                typeOfCard = typeOfCard + ' firstCard';
+            } else if (index === 7) {
+                typeOfCard = typeOfCard + ' lastCard';
+            }
+        }
 
         return(
-            <div key={index}></div>
+            <RenderCard
+                key={key}
+                cName={whichPlayerCards + ' ' + typeOfCard}
+                suit={card.suit}
+                value={card.value}
+                typeOfCard={typeOfCard}
+            />
         );
     });
 
     return (
-        <div>
-            {hands}
+        <div className={props.player + 'Area'}>
+            <p>{props.player + 'Area'}</p>
+            <div className='cardArea'>
+                {hands}
+            </div>
         </div>
     );
 }
