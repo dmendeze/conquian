@@ -1,5 +1,6 @@
 import React from 'react';
 import RenderCard from './RenderCard';
+import RenderMeldArea from './RenderMeldArea';
 
 const RenderHand = (props) => {
 
@@ -21,10 +22,11 @@ const RenderHand = (props) => {
         return(
             <RenderCard
                 key={key}
-                cName={whichPlayerCards + ' ' + typeOfCard}
+                cName={whichPlayerCards + ' ' + typeOfCard + ' draggable '}
                 suit={card.suit}
                 value={card.value}
                 typeOfCard={typeOfCard}
+                onDragStart={props.onDragStart}
             />
         );
     });
@@ -35,6 +37,7 @@ const RenderHand = (props) => {
             <div className='cardArea'>
                 {hands}
             </div>
+            <RenderMeldArea player={props.player} onDragOver={props.onDragOver}/>
         </div>
     );
 }

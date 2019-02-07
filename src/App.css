@@ -25,7 +25,7 @@
     position: fixed;
     width: 10%;
     height: 150px;
-    top: 40vh;
+    top: 10vh;
     margin-left: 45%;
     border: 1px solid white;
     background: orange;
@@ -63,10 +63,11 @@
 
 .player2Area {
     position: fixed;
-    width: 50%;
+    width: 45%;
     height: 215px;
-    top: -20vh;
-    margin-left: 25%;
+    top: 35vh;
+    margin-left: -25%;
+    transform: rotate(-90deg);
     vertical-align: text-bottom;
     border: 1px solid white;
     background: red;

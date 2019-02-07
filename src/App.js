@@ -42,6 +42,9 @@ export default class App extends Component {
         // onClick Handlers
         this.handleDeckClick = this.handleDeckClick.bind(this);
         this.handleNewCardClick = this.handleNewCardClick.bind(this);
+        // Dragging
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
     }
 
     // Gets random numbers corresponding to cards in deck. A way to sort of shuffle.
@@ -101,6 +104,7 @@ export default class App extends Component {
 //        console.log('Deck after splice', deck);
 //        console.log('Player hands', this.state.playerCards);
     }
+    // Creates deck of cards
     generateCards() {
         const suits = ['clubs', 'coins', 'cups', 'swords'];
         let deck = [];
@@ -116,8 +120,8 @@ export default class App extends Component {
         }
 //        console.log('Full Deck when line below is commented', deck);
         this.dealCards(deck);
-    };
-
+    }
+    // When deck is clicked, turn new card over, and remove faceUp card from deck
     handleDeckClick(e) {
         console.log('Deck Click', e.toString())
         // 'Flips' first card when deck is clicked
@@ -133,8 +137,17 @@ export default class App extends Component {
             faceUp: faceUp
         })
     }
+    //
     handleNewCardClick(e) {
         console.log('New Click', e.toString())
+    }
+    // Begins dragging of object
+    onDragStart(e, id) {
+        e.dataTransfer.setData('id', id);
+    }
+    // Ends dragging of object
+    onDragOver(e) {
+        e.preventDefault();
     }
 
     componentWillMount() {
@@ -144,8 +157,20 @@ export default class App extends Component {
     render ()  {
         return (
             <div className='gameBoard'>
-                <RenderHand player='mainPlayer' cards={this.state.playerCards[0]}/>
-                <RenderHand player='player2' cards={this.state.playerCards[1]}/>
+                <RenderHand
+                    player='mainPlayer'
+                    cards={this.state.playerCards[0]}
+
+                    onDragOver={this.onDragOver}
+                    onDragStart={this.onDragStart}
+                />
+                <RenderHand
+                    player='player2'
+                    cards={this.state.playerCards[1]}
+
+                    onDragOver={this.onDragOver}
+                    onDragStart={this.onDragStart}
+                />
 {/*                {THREE_PLAYERS <= this.state.players ? (
                     <RenderHand player='player3' cards={this.state.playerCards[2]}/>
                 ) : (<div></div>)}

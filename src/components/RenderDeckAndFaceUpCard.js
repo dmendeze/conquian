@@ -13,7 +13,7 @@ const RenderDeckAndFaceUpCard = (props) => {
             }
             {props.gameHasBegun ?
                 (
-                    <div className='faceUp' onClick={(e) => props.handleNewCardClick(e)}>
+                    <div className='faceUp draggable' onClick={(e) => props.handleNewCardClick(e)}>
                         <p>{props.faceUp.suit}</p>
                         <p>{props.faceUp.value}</p>
                     </div>
